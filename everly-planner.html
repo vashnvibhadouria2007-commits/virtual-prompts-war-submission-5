@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><base href="https://d16ilfvy4mv02r.cloudfront.net/workspaces/uSD8EADsRw36UcoDYOv378QksMPupyj9/a0990bba-6899-4b8d-acc5-bff0675ffa64/files/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src https://api.anthropic.com https://api.openai.com; font-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Everly — a GenAI planning assistant for weddings, birthdays and community events: budgets, timelines, vendor checklists and personalised ideas.">
+<title>Everly · Planning Intelligence</title>
+<style>
+:root{
+  --ink:#070910;
+  --ink-2:#0b0f18;
+  --text:#e9ecf5;
+  --muted:#98a2b8;
+  --line:rgba(255,255,255,.09);
+  --line-2:rgba(255,255,255,.055);
+  --violet:#8b6cff;
+  --pink:#ff7ab8;
+  --mint:#4ad6c0;
+  --amber:#ffc46b;
+  --danger:#ff6b6b;
+  --radius:20px;
+  --shadow:0 18px 50px -18px rgba(0,0,0,.9);
+  --display:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(900px 600px at 12% -8%, rgba(139,108,255,.22), transparent 60%),
+    radial-gradient(760px 520px at 92% 4%, rgba(255,122,184,.16), transparent 62%),
+    radial-gradient(700px 700px at 60% 108%, rgba(74,214,192,.13), transparent 60%),
+    linear-gradient(180deg,#080b13,#06070c 70%);
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:3px 3px;
+  mask-image:radial-gradient(circle at 50% 20%, #000 20%, transparent 78%);
+}
+::selection{background:rgba(139,108,255,.4)}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:40;
+  display:flex;align-items:center;gap:18px;
+  padding:14px 26px;
+  border-bottom:1px solid var(--line-2);
+  background:rgba(7,9,16,.72);
+  backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit}
+.mark{
+  width:38px;height:38px;border-radius:12px;flex:none;
+  background:linear-gradient(145deg,var(--violet),var(--pink) 60%,var(--amber));
+  display:grid;place-items:center;font-size:18px;
+  box-shadow:0 10px 26px -8px rgba(139,108,255,.9), inset 0 1px 0 rgba(255,255,255,.35);
+}
+.brand h1{font-family:var(--display);font-size:19px;margin:0;letter-spacing:.2px;font-weight:600}
+.brand span{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:-1px}
+.topbar .spacer{flex:1}
+.countdown{
+  display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted);
+  padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03);
+  white-space:nowrap;
+}
+.countdown b{color:var(--text);font-variant-numeric:tabular-nums}
+
+/* ---------- layout ---------- */
+.shell{
+  max-width:1320px;margin:0 auto;padding:26px 26px 90px;
+  display:grid;grid-template-columns:330px minmax(0,1fr);gap:24px;align-items:start;
+}
+.panel-col{min-width:0;display:flex;flex-direction:column;gap:20px}
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:20px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;inset:0 0 auto 0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);
+  opacity:.7;
+}
+.card.tight{padding:16px}
+.card-title{
+  font-family:var(--display);font-size:15px;font-weight:600;margin:0 0 3px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;letter-spacing:.2px;
+}
+.card-sub{font-size:11.5px;color:var(--muted);margin:0 0 15px;letter-spacing:.02em}
+
+/* ---------- hero ---------- */
+.hero{padding:26px 26px 22px}
+.hero h2{
+  font-family:var(--display);font-size:clamp(24px,3.1vw,34px);line-height:1.14;margin:0 0 8px;
+  letter-spacing:-.4px;font-weight:600;
+}
+.hero h2 em{
+  font-style:normal;
+  background:linear-gradient(92deg,var(--violet),var(--pink) 55%,var(--amber));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p{margin:0;color:var(--muted);font-size:13.6px;max-width:62ch}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.stat{
+  border:1px solid var(--line);border-radius:14px;padding:12px 13px;
+  background:rgba(255,255,255,.026);min-width:0;
+}
+.stat .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat .v{font-family:var(--display);font-size:20px;margin-top:3px;font-variant-numeric:tabular-nums;letter-spacing:-.2px}
+.stat .v small{font-size:11.5px;color:var(--muted);font-family:var(--sans);letter-spacing:0}
+
+/* ---------- forms ---------- */
+label.f{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+input[type=text],input[type=date],input[type=number],input[type=password],select,textarea{
+  width:100%;background:rgba(255,255,255,.04);color:var(--text);
+  border:1px solid var(--line);border-radius:11px;padding:9px 11px;
+  font-family:inherit;font-size:13.5px;outline:none;transition:border-color .16s,box-shadow .16s,background .16s;
+}
+textarea{resize:vertical;min-height:60px}
+input:focus,select:focus,textarea:focus{
+  border-color:rgba(139,108,255,.75);box-shadow:0 0 0 3px rgba(139,108,255,.16);background:rgba(255,255,255,.06);
+}
+input::placeholder{color:#5f6a80}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 16px) 55%,calc(100% - 11px) 55%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:30px}
+.field{margin-bottom:13px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  border-radius:11px;padding:9px 14px;font-size:13px;font-weight:600;
+  font-family:inherit;cursor:pointer;border:1px solid var(--line);
+  background:rgba(255,255,255,.05);color:var(--text);
+  transition:transform .14s,background .16s,border-color .16s,box-shadow .16s;
+  white-space:nowrap;
+}
+.btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn.primary{
+  background:linear-gradient(140deg,var(--violet),#b45cf5 55%,var(--pink));
+  border-color:transparent;color:#fff;
+  box-shadow:0 12px 30px -12px rgba(139,108,255,.95);
+}
+.btn.primary:hover{box-shadow:0 16px 34px -10px rgba(180,92,245,.95)}
+.btn.ghost{background:transparent}
+.btn.small{padding:6px 10px;font-size:12px;border-radius:9px}
+.btn.danger{color:var(--danger);border-color:rgba(255,107,107,.3);background:rgba(255,107,107,.08)}
+.btn.danger:hover{background:rgba(255,107,107,.16)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ---------- type pills + vibes ---------- */
+.type-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.type-btn{
+  border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:13px;
+  padding:11px 6px;cursor:pointer;color:var(--muted);text-align:center;
+  font-family:inherit;font-size:11.5px;font-weight:600;transition:all .16s;
+}
+.type-btn{min-height:74px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.25}
+.type-btn .ic{display:block;font-size:19px;margin-bottom:3px;filter:grayscale(.65);transition:filter .16s}
+.type-btn:hover{background:rgba(255,255,255,.07);color:var(--text)}
+.type-btn.on{
+  background:linear-gradient(150deg,rgba(139,108,255,.28),rgba(255,122,184,.16));
+  border-color:rgba(139,108,255,.6);color:#fff;box-shadow:0 8px 24px -12px rgba(139,108,255,.9);
+}
+.type-btn.on .ic{filter:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted);
+  border-radius:999px;padding:5px 11px;font-size:11.5px;cursor:pointer;font-family:inherit;
+  transition:all .15s;
+}
+.chip:hover{color:var(--text);border-color:rgba(255,255,255,.22)}
+.chip.on{background:rgba(74,214,192,.14);border-color:rgba(74,214,192,.55);color:#bff6ed}
+.chip.cost{background:rgba(255,196,107,.13);border-color:rgba(255,196,107,.35);color:#ffd79b;cursor:default}
+
+/* ---------- tabs ---------- */
+.tabbar{display:flex;gap:6px;padding:6px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.028);overflow-x:auto;scrollbar-width:none}
+.tabbar::-webkit-scrollbar{display:none}
+.tab{
+  flex:1;border:0;background:transparent;color:var(--muted);font-family:inherit;
+  font-size:12.6px;font-weight:600;letter-spacing:.02em;padding:9px 12px;border-radius:11px;
+  cursor:pointer;transition:all .16s;white-space:nowrap;
+}
+.tab:hover{color:var(--text)}
+.tab.on{background:linear-gradient(140deg,rgba(139,108,255,.34),rgba(255,122,184,.2));color:#fff;box-shadow:0 8px 20px -12px rgba(139,108,255,.9)}
+.view{display:none}
+.view.on{display:flex;flex-direction:column;gap:20px;animation:fade .28s ease both}
+.ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ov-grid .card{min-width:0}
+@keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+/* ---------- budget ---------- */
+.budget-head{display:grid;grid-template-columns:172px 1fr;gap:22px;align-items:center}
+.donut{
+  width:172px;height:172px;border-radius:50%;position:relative;flex:none;
+  transition:background .3s;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08), 0 16px 40px -20px rgba(0,0,0,.9);
+}
+.donut::after{
+  content:'';position:absolute;inset:19%;border-radius:50%;
+  background:radial-gradient(circle at 50% 20%,#141a26,#0b0f18);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
+}
+.donut .inner{
+  position:absolute;inset:19%;z-index:2;display:grid;place-content:center;text-align:center;gap:1px;
+}
+.donut .inner .lbl{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.donut .inner .amt{font-family:var(--display);font-size:19px;font-variant-numeric:tabular-nums;letter-spacing:-.3px}
+.donut .inner .of{font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-direction:column;gap:9px;min-width:0}
+.leg-row{display:grid;grid-template-columns:10px 1fr 88px 78px;gap:10px;align-items:center;font-size:12.6px}
+.dot{width:10px;height:10px;border-radius:3px;flex:none;box-shadow:0 0 10px -1px currentColor}
+.leg-row .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.leg-row .pct{color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;font-size:11.5px}
+.leg-row .amt{text-align:right;font-variant-numeric:tabular-nums;font-size:12.4px}
+
+.cat-list{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.cat{border:1px solid var(--line-2);border-radius:14px;padding:11px 13px;background:rgba(255,255,255,.02)}
+.cat-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.cat-top .nm{font-size:13px;font-weight:600;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cat-top .val{font-variant-numeric:tabular-nums;font-size:13px;color:#dfe5f2}
+.cat-top input[type=number]{width:96px;text-align:right;padding:5px 8px;font-size:12.5px}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:99px;
+  background:rgba(255,255,255,.12);outline:none;cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:15px;height:15px;border-radius:50%;
+  background:#fff;box-shadow:0 0 0 4px rgba(139,108,255,.28),0 3px 10px rgba(0,0,0,.6);cursor:grab;
+}
+input[type=range]::-moz-range-thumb{width:15px;height:15px;border:0;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(139,108,255,.28)}
+.bar{height:7px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar > i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--violet),var(--pink));transition:width .35s}
+.bar.mint > i{background:linear-gradient(90deg,var(--mint),#7bb8ff)}
+.bar.amber > i{background:linear-gradient(90deg,var(--amber),var(--pink))}
+.over{color:var(--danger)}
+.badge{font-size:10.5px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.badge.ok{color:#9df0e2;border-color:rgba(74,214,192,.4);background:rgba(74,214,192,.1)}
+.badge.warn{color:#ffd79b;border-color:rgba(255,196,107,.4);background:rgba(255,196,107,.1)}
+.badge.bad{color:#ffb3b3;border-color:rgba(255,107,107,.4);background:rgba(255,107,107,.1)}
+
+/* ---------- timeline ---------- */
+.tl{display:flex;flex-direction:column;gap:0;margin-top:6px}
+.tl-item{display:grid;grid-template-columns:96px 22px 1fr;gap:12px;padding:11px 0;position:relative}
+.tl-item + .tl-item{border-top:1px dashed rgba(255,255,255,.06)}
+.tl-when{font-size:11.4px;color:var(--muted);text-align:right;padding-top:2px;font-variant-numeric:tabular-nums;line-height:1.35}
+.tl-when b{display:block;color:#cfd7e6;font-size:12px;font-weight:600}
+.tl-rail{display:flex;justify-content:center;position:relative}
+.tl-rail::before{content:'';position:absolute;top:0;bottom:-22px;width:1px;background:rgba(255,255,255,.11)}
+.tl-item:last-child .tl-rail::before{display:none}
+.tl-dot{width:11px;height:11px;border-radius:50%;margin-top:6px;z-index:1;background:#1b2230;border:2px solid rgba(255,255,255,.28)}
+.tl-item.done .tl-dot{background:var(--mint);border-color:var(--mint);box-shadow:0 0 0 4px rgba(74,214,192,.14)}
+.tl-item.next .tl-dot{background:var(--violet);border-color:var(--violet);box-shadow:0 0 0 4px rgba(139,108,255,.18)}
+.tl-item.overdue .tl-dot{background:var(--amber);border-color:var(--amber);box-shadow:0 0 0 4px rgba(255,196,107,.16)}
+.tl-body{display:flex;align-items:flex-start;gap:10px;min-width:0}
+.tl-body label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;min-width:0;flex:1}
+.tl-text{font-size:13.4px;line-height:1.45}
+.tl-item.done .tl-text{color:#6f7a90;text-decoration:line-through;text-decoration-color:rgba(255,255,255,.25)}
+.phase{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7d88a0;margin-top:1px}
+input[type=checkbox]{
+  appearance:none;-webkit-appearance:none;width:17px;height:17px;flex:none;margin-top:2px;
+  border:1.5px solid rgba(255,255,255,.28);border-radius:6px;background:rgba(255,255,255,.04);
+  cursor:pointer;transition:all .15s;position:relative;
+}
+input[type=checkbox]:checked{background:linear-gradient(140deg,var(--mint),#4ac4ff);border-color:transparent}
+input[type=checkbox]:checked::after{content:'';position:absolute;left:5px;top:1.5px;width:5px;height:9px;border:solid #06231f;border-width:0 2px 2px 0;transform:rotate(42deg)}
+
+/* ---------- vendors ---------- */
+.v-head,.v-row{display:grid;grid-template-columns:1.45fr 1fr 118px 100px 30px;gap:10px;align-items:center}
+.v-head{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:0 4px 9px;border-bottom:1px solid var(--line-2)}
+.v-row{padding:7px 4px;border-bottom:1px solid rgba(255,255,255,.045);transition:background .15s}
+.v-row:hover{background:rgba(255,255,255,.022)}
+.v-row input,.v-row select{padding:5px 9px;font-size:12.4px;border-radius:9px;background:rgba(255,255,255,.03);line-height:1.35}
+.v-row .nm input{font-weight:600}
+.v-row select.status-booked,.v-row select.status-paid{color:#9df0e2;border-color:rgba(74,214,192,.4)}
+.v-row select.status-quote{color:#ffd79b;border-color:rgba(255,196,107,.35)}
+.x{
+  border:0;background:transparent;color:#5f6a80;font-size:16px;line-height:1;cursor:pointer;
+  border-radius:8px;padding:4px 6px;transition:all .15s;font-family:inherit;
+}
+.x:hover{color:var(--danger);background:rgba(255,107,107,.1)}
+.v-scroll{max-height:560px;overflow:auto;padding-right:2px}
+.v-scroll::-webkit-scrollbar{width:8px}
+.v-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:8px}
+
+/* ---------- ideas ---------- */
+.idea-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:13px}
+.idea{
+  border:1px solid var(--line);border-radius:16px;padding:15px;
+  background:linear-gradient(160deg,rgba(139,108,255,.11),rgba(255,255,255,.02) 55%);
+  position:relative;overflow:hidden;transition:transform .18s,border-color .18s;
+  animation:fade .3s ease both;
+}
+.idea:hover{transform:translateY(-3px);border-color:rgba(139,108,255,.45)}
+.idea h4{font-family:var(--display);font-size:14.5px;margin:0 0 6px;letter-spacing:.1px;font-weight:600;line-height:1.3}
+.idea p{margin:0;font-size:12.5px;color:#b9c2d6;line-height:1.5}
+.idea .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px;align-items:center}
+.idea .rm{position:absolute;top:9px;right:9px;opacity:0;transition:opacity .15s}
+.idea:hover .rm{opacity:1}
+.empty{
+  border:1px dashed rgba(255,255,255,.16);border-radius:16px;padding:34px 20px;text-align:center;
+  color:var(--muted);font-size:13px;background:rgba(255,255,255,.014);
+}
+.empty .big{font-size:26px;display:block;margin-bottom:8px;opacity:.8}
+
+/* ---------- security ---------- */
+.sec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:12px}
+.sec{border:1px solid var(--line);border-radius:15px;padding:14px;background:rgba(255,255,255,.022)}
+.sec h4{margin:0 0 6px;font-size:12.8px;display:flex;gap:8px;align-items:center;font-weight:600}
+.sec h4 .ic{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:11px;background:rgba(74,214,192,.14);color:#9df0e2;flex:none}
+.sec p{margin:0;font-size:12.1px;color:#a9b3c7;line-height:1.5}
+.sec code{font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.07);padding:1px 5px;border-radius:5px;color:#dfe5f2}
+.notice{
+  display:flex;gap:11px;border:1px solid rgba(255,196,107,.32);background:rgba(255,196,107,.08);
+  border-radius:14px;padding:13px 15px;font-size:12.4px;color:#f3dcb6;line-height:1.5;
+}
+.notice .ic{font-size:15px;flex:none;line-height:1.3}
+
+/* ---------- toast ---------- */
+#toasts{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:90;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.toast{
+  background:rgba(18,23,34,.96);border:1px solid var(--line);border-radius:12px;
+  padding:10px 16px;font-size:12.8px;box-shadow:0 20px 44px -16px rgba(0,0,0,.95);
+  animation:up .25s ease both;backdrop-filter:blur(10px);max-width:min(92vw,440px);
+}
+.toast.err{border-color:rgba(255,107,107,.5);color:#ffc9c9}
+.toast.ok{border-color:rgba(74,214,192,.5);color:#c3f6ee}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.hr{height:1px;background:var(--line-2);margin:16px 0}
+.mini{font-size:11.5px;color:var(--muted)}
+.kv{display:flex;justify-content:space-between;gap:10px;font-size:12.6px;padding:5px 0}
+.kv span:last-child{font-variant-numeric:tabular-nums;color:#dfe5f2;white-space:nowrap;flex:none}
+.kv span:first-child{min-width:0}
+.foot{max-width:1320px;margin:0 auto;padding:0 26px 40px;color:#5f6a80;font-size:11.5px;text-align:center}
+
+@media (max-width:980px){
+  .shell{grid-template-columns:1fr;padding:18px 16px 70px}
+  .stats{grid-template-columns:1fr 1fr}
+  .budget-head{grid-template-columns:1fr;justify-items:center;gap:18px}
+  .legend{width:100%}
+  .v-head{display:none}
+  .v-row{grid-template-columns:1fr 1fr;gap:8px;padding:12px 4px;border:1px solid var(--line-2);border-radius:12px;margin-bottom:8px}
+  .v-row .nm,.v-row .vcat{grid-column:1/-1}
+  .v-row .rm{justify-self:end;grid-column:2}
+  .topbar{padding:12px 16px;gap:10px;flex-wrap:wrap}
+  .countdown{display:none}
+  .hero h2{font-size:26px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+  body{background:#fff;color:#111}
+  body::before,body::after,.topbar,.tabbar,.no-print{display:none!important}
+  .view{display:block!important}
+  .card{border-color:#ddd;box-shadow:none;background:#fff}
+}
+
+/* ---------- accessibility ---------- */
+:focus-visible{outline:2px solid rgba(139,108,255,.9);outline-offset:2px;border-radius:8px}
+.btn:focus-visible,.chip:focus-visible,.tab:focus-visible,.type-btn:focus-visible{outline:2px solid rgba(139,108,255,.95);outline-offset:2px}
+input[type=range]:focus-visible{outline:2px solid rgba(139,108,255,.7);outline-offset:4px}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+@media (max-width:980px){
+  .ov-grid{grid-template-columns:1fr}
+  .stat .v small{display:block;margin-top:1px}
+}
+
+.kv .phase{
+  display:inline-block;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.055);
+  padding:0 7px;border-radius:6px;font-size:9.5px;letter-spacing:.08em;line-height:1.6;vertical-align:1px;
+}
+
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#top">
+    <span class="mark" aria-hidden="true">✦</span>
+    <span>
+      <h1>Everly</h1>
+      <span>Planning intelligence</span>
+    </span>
+  </a>
+  <div class="spacer"></div>
+  <div class="countdown" id="countdown">Set an event date</div>
+  <div class="btn-row">
+    <button class="btn small ghost" id="btn-import" type="button">Import</button>
+    <button class="btn small" id="btn-export" type="button">Export plan</button>
+    <input type="file" id="file-import" accept="application/json,.json" hidden>
+  </div>
+</header>
+
+<main class="shell" id="top">
+  <!-- ------------------------------------------------ left: event setup -->
+  <aside class="panel-col">
+    <section class="card">
+      <h3 class="card-title">The occasion</h3>
+      <p class="card-sub" id="type-sub">Total for the day</p>
+      <div class="type-grid" id="type-grid"></div>
+
+      <div class="hr"></div>
+
+      <div class="field">
+        <label class="f" for="f-name">Working title</label>
+        <input type="text" id="f-name" maxlength="80" placeholder="e.g. Ana &amp; Ravi, or Sam's 40th">
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label class="f" for="f-date">Event date</label>
+          <input type="date" id="f-date">
+        </div>
+        <div class="field">
+          <label class="f" for="f-guests">Guests</label>
+          <input type="number" id="f-guests" min="1" max="100000" step="1">
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label class="f" for="f-budget">Budget</label>
+          <input type="number" id="f-budget" min="0" step="100">
+        </div>
+        <div class="field">
+          <label class="f" for="f-currency">Currency</label>
+          <select id="f-currency"></select>
+        </div>
+      </div>
+      <div class="field">
+        <label class="f" for="f-location">Location</label>
+        <input type="text" id="f-location" maxlength="80" placeholder="City, venue or “back garden”">
+      </div>
+
+      <div class="field" style="margin-bottom:4px">
+        <label class="f">Vibe — shapes the ideas engine</label>
+        <div class="chips" id="vibes"></div>
+      </div>
+    </section>
+
+    <section class="card tight">
+      <h3 class="card-title">Plan file</h3>
+      <p class="card-sub" style="margin-bottom:12px">Stored only in this browser.</p>
+      <div class="btn-row">
+        <button class="btn small" id="btn-print" type="button">Print / PDF</button>
+        <button class="btn small danger" id="btn-reset" type="button">Reset</button>
+      </div>
+    </section>
+  </aside>
+
+  <!-- --------------------------------------------------- right: workspace -->
+  <div class="panel-col">
+    <section class="card hero">
+      <h2 id="hero-title">Plan something memorable</h2>
+      <p id="hero-sub">Tell Everly what you are planning and it builds the budget, the countdown, the vendor list and ideas that fit your taste.</p>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <nav class="tabbar" role="tablist" aria-label="Sections">
+      <button class="tab on" data-view="overview" role="tab" type="button">Overview</button>
+      <button class="tab" data-view="budget" role="tab" type="button">Budget</button>
+      <button class="tab" data-view="timeline" role="tab" type="button">Timeline</button>
+      <button class="tab" data-view="vendors" role="tab" type="button">Vendors</button>
+      <button class="tab" data-view="ideas" role="tab" type="button">Ideas</button>
+      <button class="tab" data-view="security" role="tab" type="button">Security</button>
+    </nav>
+
+    <!-- overview -->
+    <section class="view on" id="view-overview">
+      <div class="card">
+        <h3 class="card-title">Next up</h3>
+        <p class="card-sub">The four nearest tasks that are still open.</p>
+        <div id="next-actions"></div>
+        <div class="hr"></div>
+        <div id="budget-warn"></div>
+      </div>
+
+      <div class="ov-grid">
+        <div class="card">
+          <h3 class="card-title">Budget snapshot</h3>
+          <p class="card-sub">Your five biggest lines.</p>
+          <div id="ov-budget"></div>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Idea spotlight</h3>
+          <p class="card-sub">One suggestion to sit with today.</p>
+          <div id="ov-idea"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- budget -->
+    <section class="view" id="view-budget">
+      <div class="card">
+        <h3 class="card-title">Budget split</h3>
+        <p class="card-sub">Every line is a share of the total — adjust the slider, or type an exact amount.</p>
+        <div class="budget-head">
+          <div class="donut" id="donut">
+            <div class="inner">
+              <div class="lbl">Allocated</div>
+              <div class="amt" id="donut-amt">—</div>
+              <div class="of" id="donut-of">—</div>
+            </div>
+          </div>
+          <div class="legend" id="legend"></div>
+        </div>
+        <div class="hr"></div>
+        <div class="cat-list" id="cat-list"></div>
+        <div class="hr"></div>
+        <div class="row2" style="align-items:flex-end">
+          <div>
+            <label class="f" for="new-cat">Add a category</label>
+            <input type="text" id="new-cat" maxlength="40" placeholder="e.g. Photobooth">
+          </div>
+          <div class="btn-row">
+            <button class="btn" id="btn-add-cat" type="button">Add</button>
+            <button class="btn ghost" id="btn-balance" type="button">Balance to 100%</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">Where it stands <span class="badge" id="alloc-note"></span></h3>
+        <div class="bar" style="margin:6px 0 16px"><i id="budget-bar" style="width:0"></i></div>
+        <div id="budget-totals"></div>
+      </div>
+    </section>
+
+    <!-- timeline -->
+    <section class="view" id="view-timeline">
+      <div class="card">
+        <h3 class="card-title">Countdown <span class="badge" id="tl-progress"></span></h3>
+        <div class="bar mint" style="margin:6px 0 14px"><i id="tl-bar" style="width:0"></i></div>
+        <div class="tl" id="tl"></div>
+        <div class="hr"></div>
+        <div class="row3" style="align-items:flex-end">
+          <div style="grid-column:span 2">
+            <label class="f" for="new-task">Add a task</label>
+            <input type="text" id="new-task" maxlength="160" placeholder="e.g. Book the string quartet">
+          </div>
+          <div>
+            <label class="f" for="new-task-days">Days before</label>
+            <div class="btn-row">
+              <input type="number" id="new-task-days" value="30" min="-30" max="1200" style="width:80px">
+              <button class="btn" id="btn-add-task" type="button">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- vendors -->
+    <section class="view" id="view-vendors">
+      <div class="card">
+        <h3 class="card-title">Vendor checklist <span class="badge" id="v-progress"></span></h3>
+        <div class="bar amber" style="margin:6px 0 14px"><i id="v-bar" style="width:0"></i></div>
+        <div class="v-head">
+          <div>Vendor</div><div>Category</div><div>Status</div><div>Cost</div><div></div>
+        </div>
+        <div class="v-scroll" id="v-rows"></div>
+        <div class="hr"></div>
+        <div class="row2" style="align-items:flex-end">
+          <div>
+            <label class="f" for="new-vendor">Add a vendor</label>
+            <input type="text" id="new-vendor" maxlength="60" placeholder="e.g. Harbour String Quartet">
+          </div>
+          <div class="btn-row">
+            <button class="btn" id="btn-add-vendor" type="button">Add vendor</button>
+          </div>
+        </div>
+        <div class="kv" style="margin-top:14px;border-top:1px solid rgba(255,255,255,.055);padding-top:12px">
+          <span>Committed to booked vendors</span><span id="v-committed">—</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ideas -->
+    <section class="view" id="view-ideas">
+      <div class="card">
+        <h3 class="card-title">Personalised ideas</h3>
+        <p class="card-sub">Scored against your event type, guest count, budget per head and vibe tags.</p>
+        <div class="btn-row" style="margin-bottom:16px">
+          <button class="btn primary" id="btn-generate" type="button">✦ Generate ideas</button>
+          <button class="btn" id="btn-ai" type="button">Ask the model</button>
+        </div>
+        <div class="idea-grid" id="idea-grid"></div>
+      </div>
+    </section>
+
+    <!-- security -->
+    <section class="view" id="view-security">
+      <div class="card">
+        <h3 class="card-title">Security &amp; privacy posture</h3>
+        <p class="card-sub">What this app does, and what it deliberately refuses to do.</p>
+        <div class="sec-grid">
+          <div class="sec">
+            <h4><span class="ic">CSP</span> Locked-down content policy</h4>
+            <p>A <code>Content-Security-Policy</code> meta tag denies everything by default — no iframes, objects, forms, base-URI tricks or third-party fonts. Only this document, <code>data:</code> images and the two AI endpoints are permitted. <code>frame-ancestors</code> cannot be set from a meta tag, so clickjacking defence belongs in response headers.</p>
+          </div>
+          <div class="sec">
+            <h4><span class="ic">XSS</span> No HTML injection path</h4>
+            <p>Every user string is written with <code>textContent</code> via a DOM builder. There is no <code>innerHTML</code>, no <code>eval</code>, no <code>new Function</code>, no inline <code>onclick=</code> attributes and no template-string HTML anywhere in the app.</p>
+          </div>
+          <div class="sec">
+            <h4><span class="ic">PP</span> Prototype-pollution safe imports</h4>
+            <p>Imported JSON is never merged. It is re-read field by field against a whitelist with type checks, length caps, numeric clamps and enum validation, so <code>__proto__</code> or <code>constructor</code> keys cannot reach an object.</p>
+          </div>
+          <div class="sec">
+            <h4><span class="ic">⌀</span> No third-party code</h4>
+            <p>Zero scripts, zero CDNs, zero analytics, zero cookies. The app runs fully offline from a single file, so a supply-chain compromise has nothing to attach to.</p>
+          </div>
+          <div class="sec">
+            <h4><span class="ic">⇄</span> Data minimisation</h4>
+            <p>A plan is the only thing stored, in this browser's <code>localStorage</code> under one key. No guest names, no contact details and no payment data are ever requested — and nothing is uploaded.</p>
+          </div>
+          <div class="sec">
+            <h4><span class="ic">✓</span> Output validation</h4>
+            <p>Model output is parsed as JSON, shape-checked, length-capped and rendered as text. A malformed or hostile response cannot execute; it simply falls back to the built-in planner.</p>
+          </div>
+          <div class="sec">
+            <h4><span class="ic">⏱</span> Cost &amp; abuse throttling</h4>
+            <p>AI calls are deliberately rate-limited client-side (15s between requests) and the button disables while in flight, so a stuck tab cannot spin up a spend loop.</p>
+          </div>
+          <div class="sec">
+            <h4><span class="ic">⚑</span> Honest limits</h4>
+            <p>Client-side code cannot keep a secret. A key entered here is visible to anyone with access to this browser session — use a scoped, low-limit key. In production, proxy the call through a server and drop <code>'unsafe-inline'</code> for a nonce or hash.</p>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <h3 class="card-title" style="margin-bottom:4px">Optional AI access</h3>
+        <p class="card-sub">Leave this on <b>Built-in</b> and nothing ever leaves the device.</p>
+
+        <div class="chips" style="margin-bottom:14px">
+          <label class="chip" style="display:flex;gap:7px;align-items:center;cursor:pointer">
+            <input type="radio" name="provider" value="local" checked style="appearance:auto;-webkit-appearance:auto;width:13px;height:13px;margin:0;border-radius:50%"> Built-in planner
+          </label>
+          <label class="chip" style="display:flex;gap:7px;align-items:center;cursor:pointer">
+            <input type="radio" name="provider" value="anthropic" style="appearance:auto;-webkit-appearance:auto;width:13px;height:13px;margin:0;border-radius:50%"> Anthropic
+          </label>
+          <label class="chip" style="display:flex;gap:7px;align-items:center;cursor:pointer">
+            <input type="radio" name="provider" value="openai" style="appearance:auto;-webkit-appearance:auto;width:13px;height:13px;margin:0;border-radius:50%"> OpenAI
+          </label>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label class="f" for="ai-key">API key (session only)</label>
+            <input type="password" id="ai-key" autocomplete="off" spellcheck="false" placeholder="sk-…">
+          </div>
+          <div class="field">
+            <label class="f" for="ai-model">Model override</label>
+            <input type="text" id="ai-model" autocomplete="off" spellcheck="false">
+          </div>
+        </div>
+        <p class="mini" id="ai-hint" style="margin:-4px 0 14px"></p>
+
+        <div class="notice">
+          <span class="ic">⚠</span>
+          <div>Never paste a production or company-wide key here. This is a client-side demo: the key is readable by anything running in this tab. Create a throwaway key with a hard spend limit.</div>
+        </div>
+        <div class="btn-row" style="margin-top:14px">
+          <button class="btn small danger" id="btn-clear-key" type="button">Clear key</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div id="toasts" aria-live="polite"></div>
+
+<script>
+'use strict';
+/* =========================================================================
+   Everly — GenAI event planning assistant
+   Single-document app. No dependencies, no network except optional AI call.
+   Security posture is documented in the "Security" tab; all user-rendered
+   text goes through text nodes (never innerHTML), and any imported JSON is
+   rebuilt field-by-field against a whitelist.
+   ========================================================================= */
+(function () {
+  /* ---------------------------------------------------------------- utils */
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+  function el(tag, props, ...kids) {
+    const node = document.createElement(tag);
+    if (props && typeof props === 'object' && !(props instanceof Node)) {
+      for (const [k, v] of Object.entries(props)) {
+        if (v === null || v === undefined) continue;
+        if (k === 'class') node.className = v;
+        else if (k === 'text') node.textContent = String(v);
+        else if (k === 'style' && typeof v === 'object') Object.assign(node.style, v);
+        else if (k === 'data' && typeof v === 'object') Object.assign(node.dataset, v);
+        else if (k.startsWith('on') && typeof v === 'function') node.addEventListener(k.slice(2).toLowerCase(), v);
+        else if (k === 'value') node.value = v;
+        else if (k === 'checked' || k === 'disabled') node[k] = !!v;
+        else node.setAttribute(k, String(v));
+      }
+    } else if (props !== undefined && props !== null) {
+      kids.unshift(props);
+    }
+    const add = (c) => {
+      if (c === null || c === undefined || c === false) return;
+      if (Array.isArray(c)) return c.forEach(add);
+      node.appendChild(c instanceof Node ? c : document.createTextNode(String(c)));
+    };
+    kids.forEach(add);
+    return node;
+  }
+
+  const strip = (v, max = 200) =>
+    String(v == null ? '' : v)
+      .replace(/[\u0000-\u001f\u007f]/g, '')
+      .slice(0, max);
+
+  const clamp = (n, lo, hi, fallback = 0) => {
+    const x = Number(n);
+    if (!Number.isFinite(x)) return fallback;
+    return Math.min(hi, Math.max(lo, x));
+  };
+
+  function uid() {
+    try {
+      if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+      if (window.crypto && crypto.getRandomValues) {
+        const b = new Uint8Array(8);
+        crypto.getRandomValues(b);
+        return Array.from(b, (x) => x.toString(16).padStart(2, '0')).join('');
+      }
+    } catch (_) { /* ignore */ }
+    return 'id' + Math.random().toString(36).slice(2, 10);
+  }
+
+  const CURRENCIES = ['USD', 'EUR', 'GBP', 'INR', 'AUD', 'CAD', 'SGD', 'JPY'];
+
+  function money(n) {
+    const v = Number.isFinite(n) ? n : 0;
+    try {
+      return new Intl.NumberFormat(undefined, {
+        style: 'currency',
+        currency: state.currency,
+        maximumFractionDigits: v >= 1000 ? 0 : 2
+      }).format(v);
+    } catch (_) {
+      return state.currency + ' ' + Math.round(v).toLocaleString();
+    }
+  }
+
+  const COLORS = ['#8b6cff', '#ff7ab8', '#4ad6c0', '#ffc46b', '#6aa8ff', '#c58bff',
+    '#ff8f6b', '#7ce0a3', '#f27fd0', '#5fd0e8', '#ffd166', '#a9b4cc'];
+
+  function toast(msg, kind) {
+    const host = $('#toasts');
+    const t = el('div', { class: 'toast' + (kind ? ' ' + kind : ''), text: msg });
+    host.appendChild(t);
+    setTimeout(() => {
+      t.style.transition = 'opacity .3s, transform .3s';
+      t.style.opacity = '0';
+      t.style.transform = 'translateY(8px)';
+      setTimeout(() => t.remove(), 320);
+    }, 2900);
+  }
+
+  /* ------------------------------------------------------------ knowledge */
+  const day = 86400000;
+
+  const TYPES = {
+    wedding: {
+      label: 'Wedding', icon: '💍', lead: 365,
+      budget: 28000, guests: 120, currencyHint: 'Total for the day',
+      categories: [
+        ['Venue & site fee', 28], ['Catering & bar', 24], ['Photography & video', 12],
+        ['Florals & décor', 9], ['Attire & beauty', 8], ['Music & entertainment', 7],
+        ['Stationery & signage', 3], ['Cake & desserts', 3], ['Transport & lodging', 3], ['Contingency', 3]
+      ],
+      vendors: ['Venue', 'Caterer', 'Photographer', 'Videographer', 'Florist', 'DJ or band',
+        'Officiant', 'Hair & makeup', 'Cake designer', 'Rentals', 'Stationery designer', 'Transport'],
+      vibes: ['Outdoor', 'Intimate', 'Black-tie', 'Rustic', 'Modern', 'Cultural', 'Eco-conscious', 'Destination'],
+      tasks: [
+        [365, 'Set the budget ceiling and guest-count cap', 'Foundations'],
+        [330, 'Book the venue — peak dates go 12–18 months out', 'Foundations'],
+        [300, 'Hire a planner or name a day-of coordinator', 'Team'],
+        [270, 'Shortlist 8–10 photographers and review full galleries', 'Team'],
+        [240, 'Confirm the officiant and legal requirements', 'Foundations'],
+        [210, 'Send save-the-dates and open the room block', 'Guest experience'],
+        [180, 'Book catering and schedule the tasting', 'Team'],
+        [150, 'Order attire and lock alteration appointments', 'Details'],
+        [120, 'Book florist and do a design walkthrough', 'Details'],
+        [100, 'Send invitations with an RSVP deadline 30 days out', 'Guest experience'],
+        [75, 'Arrange transport and guest shuttles', 'Logistics'],
+        [60, 'Finalise menu, bar package and rentals', 'Details'],
+        [45, 'Share the run-of-show draft with every vendor', 'Logistics'],
+        [30, 'RSVP deadline — lock final headcount', 'Guest experience'],
+        [21, 'Build the seating chart and place cards', 'Details'],
+        [14, 'Settle final payments and prepare gratuity envelopes', 'Logistics'],
+        [7, 'Confirm deliveries and pack the day-of kit', 'Logistics'],
+        [1, 'Rehearsal, hand off the timeline, breathe', 'Event day']
+      ],
+      ideas: [
+        ['Sunset vow exchange', 'Time the ceremony 45 minutes before golden hour, then serve cocktails facing the same view so guests stay in the light.', '$$', ['Outdoor', 'Modern']],
+        ['Statement escort wall', 'Replace 150 place cards with one large brass-framed seating chart — cheaper than calligraphy per card and it photographs beautifully.', '$', ['Modern', 'Black-tie']],
+        ['Family recipe table', 'Ask four relatives for a dish that matters to them and have catering serve them as a shared "family table" course.', '$$', ['Cultural', 'Intimate']],
+        ['Second-life florals', 'Budget for bud vases instead of centerpieces, then send every arrangement home with a guest who helped you most.', '$', ['Eco-conscious', 'Intimate']],
+        ['Late-night bite cart', 'A taco, ramen or gelato cart at 10pm costs less than another passed canapé hour and becomes the story everyone retells.', '$$', ['Modern']],
+        ['Live illustrator', 'Hire an illustrator for three hours to sketch guests — doubles as entertainment and as your guestbook.', '$$', ['Modern', 'Intimate']],
+        ['Heritage corner', 'A quiet table with grandparents\' wedding photos and one-line love advice cards from each couple attending.', '$', ['Cultural', 'Intimate']],
+        ['Ceremony-to-party swap', 'Same room, 20-minute flip: ceremony under an arch, then the arch becomes the band backdrop. Saves a site fee.', '$$', ['Modern', 'Rustic']],
+        ['Two-course dessert', 'Serve a small plated dessert with dinner and wheel out the cake an hour later — nobody skips cake, and the dance floor stays full.', '$', ['Intimate']],
+        ['Rain-proof plan B', 'Pre-book a 20x40 tent hold for 10% down; it converts to a refundable credit if unused in most contracts.', '$', ['Outdoor']],
+        ['Guest choir entrance', 'Invite 8 friends to sing the processional instead of hiring a string quartet — rehearsal is one dinner and a playlist.', '$', ['Intimate', 'Cultural']],
+        ['Sleep-first exit', 'Skip the sparkler send-off and book a 1am shuttle. Guests stay longer and the venue fee for late hours is usually negotiable.', '$', ['Modern']],
+        ['Photographer second shooter', 'Add a second shooter for the getting-ready block only: it is the cheapest way to get both sides of the morning.', '$$', ['Black-tie']],
+        ['Registry alternative', 'Register for three experience funds (honeymoon dinner, pottery class, first-home plant) instead of a fourth set of towels.', '$', ['Eco-conscious']],
+        ['Local-produce menu', 'Ask catering to price a menu within 60 miles of the venue; it often lands cheaper than imported luxury proteins.', '$$', ['Eco-conscious', 'Outdoor']],
+        ['Kids table with a purpose', 'One table, one sitter, one craft box, and a movie at 8pm in a side room. Parents dance; kids are fine.', '$', ['Intimate']]
+      ]
+    },
+    birthday: {
+      label: 'Birthday', icon: '🎂', lead: 90,
+      budget: 2500, guests: 30, currencyHint: 'Everything except gifts',
+      categories: [
+        ['Venue or home setup', 24], ['Food & catering', 26], ['Cake & desserts', 12],
+        ['Décor & balloons', 13], ['Entertainment', 12], ['Photography', 5], ['Favours & extras', 5], ['Contingency', 3]
+      ],
+      vendors: ['Venue', 'Caterer', 'Bakery', 'Balloon & décor', 'Entertainment', 'DJ',
+        'Photographer', 'Rentals', 'Face painter', 'Party favours'],
+      vibes: ['Milestone', 'Surprise', 'Kids party', 'Themed', 'Backyard', 'Dinner party', 'Outdoor', 'Low-key'],
+      tasks: [
+        [90, 'Pick the date, budget and hard guest cap', 'Foundations'],
+        [75, 'Choose the venue or decide to host at home', 'Foundations'],
+        [60, 'Settle on a theme and sketch the invitation', 'Guest experience'],
+        [45, 'Book entertainment and the cake designer', 'Team'],
+        [30, 'Send invitations with a clear RSVP date', 'Guest experience'],
+        [21, 'Order décor, balloons and tableware', 'Details'],
+        [14, 'Confirm headcount and finalise the menu', 'Details'],
+        [10, 'Buy drinks and non-alcoholic options', 'Logistics'],
+        [7, 'Confirm every vendor and build the playlist', 'Logistics'],
+        [3, 'Prep favours and the photo spot', 'Details'],
+        [1, 'Set up, test the music, chill the drinks', 'Event day']
+      ],
+      ideas: [
+        ['Story wall', 'Print 20 photos across the years and hang them on one line with clips — instant décor and instant conversation.', '$', ['Milestone', 'Low-key']],
+        ['Two-hour kids zone', 'A single structured activity block (crafts, then cake, then bubbles) beats unstructured chaos every time.', '$', ['Kids party']],
+        ['Cake alternative', 'A doughnut tower or a cookie table costs a third of a custom cake and photographs better in low light.', '$', ['Themed', 'Backyard']],
+        ['Surprise logistics', 'Give guests a 30-minute-early arrival window and park cars two streets away — the surprise survives, the street does not flood.', '$', ['Surprise']],
+        ['Playlist by decade', 'Ask each guest for one song from the year they met the birthday person. The playlist builds itself and the room sings.', '$', ['Milestone', 'Dinner party']],
+        ['Grazing table over plated', 'For 20–40 people a grazing table is cheaper than catering, needs no staff, and runs all evening.', '$$', ['Backyard', 'Low-key']],
+        ['Milestone toast reel', 'Collect 60-second video clips from people who cannot attend and play them once, right before the cake.', '$', ['Milestone', 'Surprise']],
+        ['Signature drink, zero alcohol', 'One batched cocktail plus one serious zero-proof version. Non-drinkers stop feeling like an afterthought.', '$', ['Dinner party']],
+        ['Backyard lighting', 'Two strings of festoon lights and six citronella candles transform a garden for under a hundred dollars.', '$', ['Backyard', 'Outdoor']],
+        ['Favour that gets used', 'A small plant, a good candle, or a bag of coffee — anything that survives the week beats plastic trinkets.', '$', ['Themed', 'Low-key']],
+        ['Theme with a loose leash', 'Give guests a colour palette instead of a costume brief; participation goes up and photos stay cohesive.', '$', ['Themed']],
+        ['Photo spot with props', 'One clean backdrop, three props, good light: guests make their own photos and you skip a photographer.', '$', ['Themed', 'Kids party']],
+        ['Potluck with a grid', 'Assign courses by surname (A–F mains, G–M sides, N–Z desserts) so nothing arrives as eleven salads.', '$', ['Backyard', 'Low-key']],
+        ['Rent the good chairs', 'Chairs and glassware are the cheapest upgrade to how a room feels, and rentals deliver and collect.', '$$', ['Dinner party']]
+      ]
+    },
+    community: {
+      label: 'Community event', icon: '🎪', lead: 180,
+      budget: 12000, guests: 250, currencyHint: 'Grants, sponsors and ticket income',
+      categories: [
+        ['Venue & permits', 18], ['Security & insurance', 12], ['Sound, AV & staging', 15],
+        ['Food & vendors', 18], ['Marketing & print', 10], ['Volunteers & staffing', 9],
+        ['Accessibility & first aid', 6], ['Waste & facilities', 6], ['Contingency', 6]
+      ],
+      vendors: ['Venue', 'Permits & insurance', 'Security', 'Sound & AV', 'Food vendors',
+        'Volunteer coordinator', 'Print & marketing', 'Waste management', 'Accessibility support', 'First aid'],
+      vibes: ['Fundraiser', 'Festival', 'Market', 'Workshop', 'Cultural', 'Family', 'Accessible', 'Sustainable'],
+      tasks: [
+        [180, 'Form the steering committee and set the goal', 'Foundations'],
+        [150, 'Book the venue and start the permit file', 'Foundations'],
+        [120, 'Open sponsor outreach with a tiered deck', 'Funding'],
+        [90, 'Recruit vendors, performers and volunteers', 'Team'],
+        [60, 'Launch marketing and the registration page', 'Guest experience'],
+        [45, 'Confirm every speaker, act and stall', 'Team'],
+        [30, 'Lock logistics: power, waste, accessibility, signage', 'Logistics'],
+        [14, 'Brief volunteers and print the run of show', 'Logistics'],
+        [7, 'Site walkthrough with the venue manager', 'Logistics'],
+        [2, 'Load-in, sound check, final safety sweep', 'Event day'],
+        [1, 'Run of show, debrief sheet, thank-you list', 'Event day']
+      ],
+      ideas: [
+        ['Sponsor tiers that sell', 'Three named tiers with one concrete deliverable each beats a vague "support us" ask every time.', '$', ['Fundraiser']],
+        ['Volunteer shifts of 3 hours', 'Two shifts per person, one clear job per shift. Longer shifts are the number one volunteer drop-off cause.', '$', ['Festival']],
+        ['Accessibility as a feature', 'Publish step-free routes, a quiet room and a BSL/caption plan on the event page — attendance rises, complaints vanish.', '$', ['Accessible', 'Family']],
+        ['Waste stations with people', 'Three labelled stations staffed for the first two hours cut contamination more than signage ever does.', '$$', ['Sustainable']],
+        ['Local vendor subsidy', 'Charge community stalls a reduced fee in exchange for a workshop slot; footfall rises and the programme fills.', '$', ['Market']],
+        ['Rain plan with a phone tree', 'One decision time (4pm the day before), one SMS tree, one alternative date. Decide once, communicate once.', '$', ['Festival']],
+        ['Ticket tiers with a donate option', 'Free entry, £5 suggested, £25 supporter. Conversion triples versus a single fixed price.', '$', ['Fundraiser']],
+        ['Documentation team of two', 'One photographer and one short-form videographer for the day gives you a year of grant-application material.', '$$', ['Fundraiser', 'Cultural']],
+        ['Quiet hour first', 'Open the first hour with reduced sound and smaller crowds for families and neurodivergent attendees.', '$', ['Accessible', 'Family']],
+        ['Partner rather than duplicate', 'Co-programme with an existing local group for one stage or zone — halves the cost and doubles the audience.', '$', ['Cultural']],
+        ['Cashless plus cash', 'One card reader and one cash float covers every stall; going fully cashless excludes people who plan to spend.', '$', ['Market']],
+        ['Debrief within 72 hours', 'Send a five-question form to vendors and volunteers two days after. Details fade fast and grants want numbers.', '$', ['Festival']]
+      ]
+    }
+  };
+
+  /* --------------------------------------------------------------- state */
+  const STORE_KEY = 'everly.state.v1';
+  const KEY_SLOT = 'everly.ai.key'; // sessionStorage only, never persisted to disk
+
+  function isoInDays(n) {
+    const d = new Date(Date.now() + n * day);
+    return d.toISOString().slice(0, 10);
+  }
+
+  const STATUSES = ['Not contacted', 'Shortlisted', 'Quote received', 'Booked', 'Paid'];
+
+  function buildTasks(type) {
+    return TYPES[type].tasks.map(([days, label, phase]) => ({
+      id: uid(), days, label, phase, done: false
+    }));
+  }
+
+  function buildVendors(type) {
+    return TYPES[type].vendors.map((name) => ({
+      id: uid(), name, category: name, status: 'Not contacted', cost: 0, note: ''
+    }));
+  }
+
+  function defaultState(type) {
+    const def = TYPES[type];
+    return {
+      v: 1,
+      type,
+      name: '',
+      date: isoInDays(def.lead),
+      guests: def.guests,
+      budget: def.budget,
+      currency: 'USD',
+      location: '',
+      vibes: [],
+      categories: def.categories.map(([name, pct]) => ({ name, pct })),
+      tasks: buildTasks(type),
+      vendors: buildVendors(type),
+      ideas: [],
+      ai: { provider: 'local', model: '' }
+    };
+  }
+
+  let state = defaultState('wedding');
+  let view = 'overview';
+
+  /* ---------------------------------------------------- save / load / io */
+  let saveTimer = null;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      try {
+        localStorage.setItem(STORE_KEY, JSON.stringify(state));
+      } catch (_) { /* storage may be disabled — app still works in memory */ }
+    }, 220);
+  }
+
+  function validDate(s) {
+    if (typeof s !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return '';
+    const t = Date.parse(s + 'T00:00:00');
+    return Number.isFinite(t) ? s : '';
+  }
+
+  /** Rebuild untrusted input into a clean state object. Nothing from the file
+   *  is used by reference, so __proto__ / constructor keys cannot survive. */
+  function sanitize(raw) {
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) throw new Error('File is not a plan object');
+    const type = TYPES[raw.type] ? raw.type : null;
+    if (!type) throw new Error('Unknown event type');
+    const s = defaultState(type);
+
+    s.name = strip(raw.name, 80);
+    s.date = validDate(raw.date) || s.date;
+    s.guests = Math.round(clamp(raw.guests, 1, 100000, TYPES[type].guests));
+    s.budget = Math.round(clamp(raw.budget, 0, 1e9, TYPES[type].budget));
+    s.currency = CURRENCIES.includes(raw.currency) ? raw.currency : 'USD';
+    s.location = strip(raw.location, 80);
+
+    const allowedVibes = TYPES[type].vibes;
+    s.vibes = Array.isArray(raw.vibes)
+      ? raw.vibes.filter((v) => typeof v === 'string' && allowedVibes.includes(v)).slice(0, 8)
+      : [];
+
+    if (Array.isArray(raw.categories) && raw.categories.length) {
+      s.categories = raw.categories.slice(0, 16).map((c) => ({
+        name: strip(c && c.name, 40) || 'Category',
+        pct: clamp(c && c.pct, 0, 100, 0)
+      }));
+    }
+    if (Array.isArray(raw.tasks) && raw.tasks.length) {
+      s.tasks = raw.tasks.slice(0, 60).map((t) => ({
+        id: uid(),
+        days: Math.round(clamp(t && t.days, -30, 1200, 30)),
+        label: strip(t && t.label, 160) || 'Task',
+        phase: strip(t && t.phase, 30) || 'Planning',
+        done: !!(t && t.done)
+      }));
+    }
+    if (Array.isArray(raw.vendors) && raw.vendors.length) {
+      s.vendors = raw.vendors.slice(0, 80).map((v) => ({
+        id: uid(),
+        name: strip(v && v.name, 60) || 'Vendor',
+        category: strip(v && v.category, 40) || 'Other',
+        status: STATUSES.includes(v && v.status) ? v.status : 'Not contacted',
+        cost: Math.round(clamp(v && v.cost, 0, 1e9, 0)),
+        note: strip(v && v.note, 200)
+      }));
+    }
+    if (Array.isArray(raw.ideas)) {
+      s.ideas = raw.ideas.slice(0, 30).map((i) => ({
+        title: strip(i && i.title, 80),
+        body: strip(i && i.body, 400),
+        cost: /^\${1,3}$/.test(i && i.cost) ? i.cost : '$',
+        tags: Array.isArray(i && i.tags)
+          ? i.tags.filter((t) => typeof t === 'string').map((t) => strip(t, 24)).slice(0, 4)
+          : []
+      })).filter((i) => i.title);
+    }
+    if (raw.ai && typeof raw.ai === 'object') {
+      s.ai.provider = ['local', 'anthropic', 'openai'].includes(raw.ai.provider) ? raw.ai.provider : 'local';
+      s.ai.model = strip(raw.ai.model, 60);
+    }
+    return s;
+  }
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORE_KEY);
+      if (!raw) return false;
+      state = sanitize(JSON.parse(raw));
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function exportJSON() {
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = el('a', { href: url, download: 'everly-plan-' + (state.date || 'draft') + '.json' });
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
+    toast('Plan exported as JSON', 'ok');
+  }
+
+  function importJSON(file) {
+    if (!file) return;
+    if (file.size > 512 * 1024) { toast('File too large (max 512 KB)', 'err'); return; }
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        state = sanitize(JSON.parse(String(reader.result)));
+        save();
+        renderAll();
+        toast('Plan imported', 'ok');
+      } catch (e) {
+        toast('Import rejected: ' + strip(e.message, 80), 'err');
+      }
+    };
+    reader.onerror = () => toast('Could not read that file', 'err');
+    reader.readAsText(file);
+  }
+
+  /* ---------------------------------------------------------- derived math */
+  function allocated() {
+    return state.categories.reduce((sum, c) => sum + (Number(c.pct) || 0), 0);
+  }
+  function allocatedMoney() {
+    return state.categories.reduce((s, c) => s + (state.budget * c.pct) / 100, 0);
+  }
+  function taskStats() {
+    const done = state.tasks.filter((t) => t.done).length;
+    return { done, total: state.tasks.length };
+  }
+  function vendorStats() {
+    const booked = state.vendors.filter((v) => v.status === 'Booked' || v.status === 'Paid').length;
+    const committed = state.vendors.reduce(
+      (s, v) => s + (v.status === 'Booked' || v.status === 'Paid' ? Number(v.cost) || 0 : 0), 0);
+    return { booked, total: state.vendors.length, committed };
+  }
+  function daysToGo() {
+    const t = Date.parse(state.date + 'T00:00:00');
+    if (!Number.isFinite(t)) return null;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return Math.round((t - today.getTime()) / day);
+  }
+  function taskDate(days) {
+    const t = Date.parse(state.date + 'T00:00:00');
+    if (!Number.isFinite(t)) return null;
+    return new Date(t - days * day);
+  }
+  function readiness() {
+    const cats = allocated();
+    const budgetScore = state.budget > 0 ? Math.min(100, (cats / 100) * 100) : 0;
+    const ts = taskStats();
+    const taskPct = ts.total ? (ts.done / ts.total) * 100 : 0;
+    const vs = vendorStats();
+    const vendPct = vs.total ? (vs.booked / vs.total) * 100 : 0;
+    return Math.round(budgetScore * 0.3 + taskPct * 0.4 + vendPct * 0.3);
+  }
+  const budgetTier = () => {
+    const per = state.guests > 0 ? state.budget / state.guests : state.budget;
+    if (state.type === 'community') return state.budget < 6000 ? '$' : state.budget < 25000 ? '$$' : '$$$';
+    if (per < 90) return '$';
+    return per < 300 ? '$$' : '$$$';
+  };
+
+  /* --------------------------------------------------------- ideas engine */
+  function scoreIdea(idea, tier) {
+    let score = Math.random() * 2;
+    const tags = idea[3] || [];
+    state.vibes.forEach((v) => { if (tags.includes(v)) score += 4; });
+    if (idea[2] === tier) score += 3;
+    if (tier === '$' && idea[2] === '$$$') score -= 3;
+    if (tier === '$$$' && idea[2] === '$') score -= 1;
+    return score;
+  }
+
+  function localIdeas(n) {
+    const tier = budgetTier();
+    const pool = TYPES[state.type].ideas.slice();
+    const picked = [];
+    while (pool.length && picked.length < n) {
+      let best = 0;
+      for (let i = 1; i < pool.length; i++) {
+        if (scoreIdea(pool[i], tier) > scoreIdea(pool[best], tier)) best = i;
+      }
+      const [title, body, cost, tags] = pool.splice(best, 1)[0];
+      picked.push({ title, body, cost, tags: tags || [] });
+    }
+    return picked;
+  }
+
+  function generateIdeas() {
+    const n = 6;
+    state.ideas = localIdeas(n);
+    save();
+    renderIdeas();
+    toast('Generated ' + state.ideas.length + ' ideas for a ' + state.type + ' of this size', 'ok');
+  }
+
+  async function generateWithAI() {
+    const provider = state.ai.provider;
+    if (provider === 'local') { generateIdeas(); return; }
+    const key = sessionStorage.getItem(KEY_SLOT) || '';
+    if (!key) { toast('Add your API key in the Security tab first', 'err'); return; }
+    if (Date.now() - lastAi < 15000) { toast('Hold on a few seconds between AI calls', 'err'); return; }
+
+    const btn = $('#btn-ai');
+    btn.disabled = true;
+    const original = btn.textContent;
+    btn.textContent = 'Thinking…';
+
+    const brief = [
+      'Event type: ' + state.type,
+      'Working title: ' + (state.name || '(untitled)'),
+      'Location: ' + (state.location || 'unspecified'),
+      'Guests: ' + state.guests,
+      'Total budget: ' + state.currency + ' ' + state.budget,
+      'Vibe tags: ' + (state.vibes.join(', ') || 'open'),
+      'Budget per guest: ' + Math.round(state.budget / Math.max(1, state.guests)) + ' ' + state.currency
+    ].join('\n');
+
+    const prompt =
+      'You are a sharp, practical event planner. Based on this brief, propose 6 specific, ' +
+      'non-generic ideas that a real planner would suggest. Avoid clichés and anything that ' +
+      'requires more than the stated budget.\n\n' + brief +
+      '\n\nReturn ONLY a JSON array (no markdown, no prose) of objects with keys: ' +
+      '"title" (max 60 chars), "body" (1-2 sentences, max 240 chars, concrete and actionable), ' +
+      '"cost" (one of "$", "$$", "$$$"), "tags" (array of 1-3 short vibe labels).';
+
+    try {
+      let text = '';
+      if (provider === 'anthropic') {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'x-api-key': key,
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+          },
+          body: JSON.stringify({
+            model: state.ai.model || 'claude-sonnet-4-5',
+            max_tokens: 1400,
+            messages: [{ role: 'user', content: prompt }]
+          })
+        });
+        if (!res.ok) throw new Error('Anthropic returned ' + res.status);
+        const data = await res.json();
+        text = (data.content || []).map((b) => b.text || '').join('');
+      } else {
+        const res = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json', authorization: 'Bearer ' + key },
+          body: JSON.stringify({
+            model: state.ai.model || 'gpt-4o-mini',
+            temperature: 0.9,
+            messages: [{ role: 'user', content: prompt }]
+          })
+        });
+        if (!res.ok) throw new Error('OpenAI returned ' + res.status);
+        const data = await res.json();
+        text = (((data.choices || [])[0] || {}).message || {}).content || '';
+      }
+
+      lastAi = Date.now();
+      const start = text.indexOf('[');
+      const end = text.lastIndexOf(']');
+      if (start < 0 || end <= start) throw new Error('No JSON in response');
+      const parsed = JSON.parse(text.slice(start, end + 1));
+      const clean = parsed.slice(0, 8).map((i) => ({
+        title: strip(i && i.title, 80),
+        body: strip(i && i.body, 400),
+        cost: /^\${1,3}$/.test(i && i.cost) ? i.cost : '$',
+        tags: Array.isArray(i && i.tags)
+          ? i.tags.filter((t) => typeof t === 'string').map((t) => strip(t, 24)).slice(0, 3)
+          : []
+      })).filter((i) => i.title && i.body);
+      if (!clean.length) throw new Error('Empty result');
+      state.ideas = clean;
+      save();
+      renderIdeas();
+      toast('AI wrote ' + clean.length + ' ideas', 'ok');
+    } catch (err) {
+      toast('AI call failed (' + strip(err.message, 60) + ') — using the built-in planner', 'err');
+      generateIdeas();
+    } finally {
+      btn.disabled = false;
+      btn.textContent = original;
+    }
+  }
+  let lastAi = 0;
+
+  /* ------------------------------------------------------------- rendering */
+  function renderTypeOptions() {
+    const host = $('#type-grid');
+    host.textContent = '';
+    Object.entries(TYPES).forEach(([key, def]) => {
+      host.appendChild(el('button', {
+        class: 'type-btn' + (state.type === key ? ' on' : ''),
+        type: 'button',
+        onclick: () => setType(key)
+      }, el('span', { class: 'ic', text: def.icon }), def.label));
+    });
+  }
+
+  function renderVibes() {
+    const host = $('#vibes');
+    host.textContent = '';
+    TYPES[state.type].vibes.forEach((v) => {
+      const on = state.vibes.includes(v);
+      host.appendChild(el('button', {
+        class: 'chip' + (on ? ' on' : ''),
+        type: 'button',
+        onclick: () => {
+          state.vibes = on ? state.vibes.filter((x) => x !== v) : state.vibes.concat(v).slice(0, 8);
+          save();
+          renderVibes();
+        },
+        text: v
+      }));
+    });
+  }
+
+  function syncFormInputs() {
+    const cur = $('#f-currency');
+    if (cur.options.length !== CURRENCIES.length) {
+      cur.textContent = '';
+      CURRENCIES.forEach((c) => cur.appendChild(el('option', { value: c, text: c })));
+    }
+    $('#f-name').value = state.name;
+    $('#f-date').value = state.date;
+    $('#f-guests').value = state.guests;
+    $('#f-budget').value = state.budget;
+    $('#f-currency').value = state.currency;
+    $('#f-location').value = state.location;
+    $('#type-sub').textContent = TYPES[state.type].currencyHint;
+  }
+
+  function setType(type) {
+    if (!TYPES[type] || type === state.type) return;
+    const prev = TYPES[state.type];
+    const def = TYPES[type];
+    const progressed = state.tasks.some((t) => t.done) ||
+      state.vendors.some((v) => v.status !== 'Not contacted');
+    if (progressed && !window.confirm(
+      'Switching to ' + def.label + ' rebuilds the timeline, categories and vendor list. ' +
+      'Ticks and vendor statuses will be lost. Continue?')) return;
+
+    /* carry over the numbers only if the user actually customised them */
+    const budgetTouched = state.budget !== prev.budget;
+    const guestsTouched = state.guests !== prev.guests;
+
+    state.type = type;
+    state.categories = def.categories.map(([name, pct]) => ({ name, pct }));
+    state.tasks = buildTasks(type);
+    state.vendors = buildVendors(type);
+    state.ideas = [];
+    state.vibes = [];
+    if (!budgetTouched) state.budget = def.budget;
+    if (!guestsTouched) state.guests = def.guests;
+    save();
+    renderAll();
+    toast('Rebuilt for a ' + def.label.toLowerCase(), 'ok');
+  }
+
+  function renderHeader() {
+    const d = daysToGo();
+    const host = $('#countdown');
+    host.textContent = '';
+    if (d === null) { host.appendChild(el('span', { text: 'Set an event date' })); return; }
+    if (d > 0) {
+      host.append('⏳ ', el('b', { text: d.toLocaleString() }), ' days to go');
+    } else if (d === 0) {
+      host.append('✨ ', el('b', { text: 'Today' }), ' — event day');
+    } else {
+      host.append('📌 ', el('b', { text: Math.abs(d).toLocaleString() }), ' days ago');
+    }
+    host.title = 'Event date: ' + (state.date || 'not set');
+  }
+
+  function renderOverview() {
+    const d = daysToGo();
+    const ts = taskStats();
+    const vs = vendorStats();
+    const catTotal = allocated();
+    const remain = state.budget - allocatedMoney();
+
+    $('#hero-title').textContent = state.name ? state.name : 'Plan something memorable';
+    $('#hero-sub').textContent = state.name
+      ? 'A ' + TYPES[state.type].label.toLowerCase() + ' for ' + state.guests + ' guests in ' + (state.location || 'an undecided place') + '.'
+      : 'Tell Everly what you are planning and it builds the budget, the countdown, the vendor list and ideas that fit your taste.';
+
+    const daysValue = d === null ? '—' : Math.abs(d);
+    const daysSuffix = d === null ? 'set a date' : d === 0 ? 'it is today' : d > 0 ? 'days to go' : 'days ago';
+    const stats = [
+      ['Days to go', daysValue, daysSuffix],
+      ['Readiness', readiness() + '%', 'of the plan'],
+      ['Budget used', money(allocatedMoney()), 'of ' + money(state.budget)],
+      ['Vendors booked', vs.booked + '/' + vs.total, 'confirmed']
+    ];
+    const host = $('#stats');
+    host.textContent = '';
+    stats.forEach(([k, v, s]) => {
+      host.appendChild(el('div', { class: 'stat' },
+        el('div', { class: 'k', text: k }),
+        el('div', { class: 'v' }, String(v), el('small', { text: ' ' + s }))
+      ));
+    });
+
+    /* next actions */
+    const upcoming = state.tasks
+      .filter((t) => !t.done)
+      .sort((a, b) => b.days - a.days)
+      .slice(0, 4);
+    const na = $('#next-actions');
+    na.textContent = '';
+    if (!upcoming.length) {
+      na.appendChild(el('div', { class: 'empty' }, el('span', { class: 'big', text: '✓' }), 'Every task is ticked off. Go enjoy it.'));
+    } else {
+      upcoming.forEach((t) => {
+        const dt = taskDate(t.days);
+        const late = dt && dt < new Date();
+        na.appendChild(el('div', { class: 'kv' },
+          el('span', {}, t.label,
+            el('span', { class: 'phase', style: { marginLeft: '8px' }, text: t.phase })),
+          el('span', { class: late ? 'over' : '', text: dt ? dt.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : '—' })
+        ));
+      });
+    }
+
+    /* budget health */
+    const warn = $('#budget-warn');
+    warn.textContent = '';
+    if (catTotal > 100.5) {
+      warn.appendChild(el('div', { class: 'notice' }, el('span', { class: 'ic', text: '⚠' }),
+        el('div', {}, 'Your category percentages add up to ' + catTotal.toFixed(1) + '%. Trim about ' +
+          (catTotal - 100).toFixed(1) + '% to stay inside the plan.')));
+    } else if (remain < 0) {
+      warn.appendChild(el('div', { class: 'notice' }, el('span', { class: 'ic', text: '⚠' }),
+        el('div', {}, 'Committed vendor costs exceed the budget by ' + money(-remain) + '.')));
+    } else {
+      warn.appendChild(el('div', { class: 'notice', style: { borderColor: 'rgba(74,214,192,.32)', background: 'rgba(74,214,192,.07)', color: '#c3f6ee' } },
+        el('span', { class: 'ic', text: '✓' }),
+        el('div', {}, money(remain) + ' left to allocate. ' + ts.done + ' of ' + ts.total + ' planning tasks done.')));
+    }
+
+    /* budget snapshot */
+    const snap = $('#ov-budget');
+    snap.textContent = '';
+    const top = state.categories.slice().sort((a, b) => b.pct - a.pct).slice(0, 5);
+    if (!top.length) {
+      snap.appendChild(el('p', { class: 'mini', text: 'No categories yet.' }));
+    } else {
+      top.forEach((c, i) => {
+        const idx = state.categories.indexOf(c);
+        snap.appendChild(el('div', { style: { marginBottom: '10px' } },
+          el('div', { class: 'kv', style: { padding: '0 0 5px' } },
+            el('span', {}, el('span', { class: 'dot', style: { display: 'inline-block', marginRight: '8px', background: COLORS[idx % COLORS.length] } }), c.name),
+            el('span', { text: money((state.budget * c.pct) / 100) })
+          ),
+          el('div', { class: 'bar', style: { height: '5px' } },
+            el('i', { style: { width: Math.min(100, (c.pct / 60) * 100) + '%', background: COLORS[idx % COLORS.length] } }))
+        ));
+      });
+    }
+
+    /* idea spotlight */
+    const spot = $('#ov-idea');
+    spot.textContent = '';
+    if (!state.ideas.length) {
+      spot.appendChild(el('div', { class: 'empty', style: { padding: '22px 14px' } },
+        el('span', { class: 'big', text: '✦' }),
+        el('div', { style: { marginBottom: '12px' } }, 'Generate a set in the Ideas tab and the strongest one lands here.'),
+        el('button', {
+          class: 'btn small', type: 'button',
+          onclick: () => {
+            const tab = $('.tab[data-view="ideas"]');
+            if (tab) tab.click();
+          }
+        }, 'Go to ideas')));
+    } else {
+      const idea = state.ideas[0];
+      spot.appendChild(el('div', { class: 'idea', style: { animation: 'none' } },
+        el('h4', { text: idea.title }),
+        el('p', { text: idea.body }),
+        el('div', { class: 'meta' },
+          el('span', { class: 'chip cost', text: idea.cost }),
+          idea.tags.slice(0, 2).map((t) => el('span', { class: 'chip', text: t })))));
+    }
+  }
+
+  function donutGradient() {
+    const total = allocated();
+    if (total <= 0) return 'conic-gradient(#1a2130 0 100%)';
+    let acc = 0;
+    const stops = state.categories.map((c, i) => {
+      const from = acc;
+      acc += (c.pct / total) * 100;
+      return COLORS[i % COLORS.length] + ' ' + from.toFixed(2) + '% ' + acc.toFixed(2) + '%';
+    });
+    return 'conic-gradient(from -90deg, ' + stops.join(', ') + ')';
+  }
+
+  function renderBudget() {
+    const cats = state.categories;
+    const total = allocated();
+    const spend = allocatedMoney();
+    const ring = $('#donut');
+    ring.style.background = donutGradient();
+    $('#donut-amt').textContent = money(spend);
+    $('#donut-of').textContent = 'of ' + money(state.budget);
+
+    const legend = $('#legend');
+    legend.textContent = '';
+    cats.forEach((c, i) => {
+      legend.appendChild(el('div', { class: 'leg-row', data: { leg: String(i) } },
+        el('span', { class: 'dot', style: { background: COLORS[i % COLORS.length], color: COLORS[i % COLORS.length] } }),
+        el('span', { class: 'nm', text: c.name }),
+        el('span', { class: 'pct', text: c.pct.toFixed(1) + '%' }),
+        el('span', { class: 'amt', text: money((state.budget * c.pct) / 100) })
+      ));
+    });
+
+    const list = $('#cat-list');
+    list.textContent = '';
+    cats.forEach((c, i) => {
+      const amount = (state.budget * c.pct) / 100;
+      const row = el('div', { class: 'cat', data: { cat: String(i) } });
+      row.appendChild(el('div', { class: 'cat-top' },
+        el('span', { class: 'dot', style: { background: COLORS[i % COLORS.length], color: COLORS[i % COLORS.length] } }),
+        el('span', { class: 'nm', text: c.name }),
+        el('input', {
+          type: 'number', min: '0', step: '50', value: Math.round(amount), 'aria-label': c.name + ' amount',
+          onchange: (e) => {
+            const v = clamp(e.target.value, 0, 1e9, 0);
+            c.pct = state.budget > 0 ? (v / state.budget) * 100 : 0;
+            save(); renderBudget(); renderOverview();
+          }
+        }),
+        el('span', { class: 'pct', text: c.pct.toFixed(1) + '%' }),
+        el('button', {
+          class: 'x', type: 'button', title: 'Remove category', 'aria-label': 'Remove ' + c.name,
+          onclick: () => { state.categories.splice(i, 1); save(); renderBudget(); renderOverview(); }
+        }, '×')
+      ));
+      row.appendChild(el('input', {
+        type: 'range', min: '0', max: '60', step: '0.5', value: c.pct, 'aria-label': c.name + ' share',
+        oninput: (e) => {
+          c.pct = clamp(e.target.value, 0, 100, 0);
+          row.querySelector('input[type=number]').value = Math.round((state.budget * c.pct) / 100);
+          row.querySelector('.pct').textContent = c.pct.toFixed(1) + '%';
+          $('#donut').style.background = donutGradient();
+          $('#donut-amt').textContent = money(allocatedMoney());
+          const legRow = legend.querySelector('[data-leg="' + i + '"]');
+          if (legRow) {
+            legRow.querySelector('.pct').textContent = c.pct.toFixed(1) + '%';
+            legRow.querySelector('.amt').textContent = money((state.budget * c.pct) / 100);
+          }
+          updateBudgetTotals();
+          save();
+        },
+        onchange: () => { renderOverview(); }
+      }));
+      list.appendChild(row);
+    });
+
+    updateBudgetTotals();
+  }
+
+  function updateBudgetTotals() {
+    const cats = allocated();
+    const spend = allocatedMoney();
+    const host = $('#budget-totals');
+    host.textContent = '';
+    const rows = [
+      ['Allocated', cats.toFixed(1) + '% · ' + money(spend)],
+      ['Unallocated', (100 - cats).toFixed(1) + '% · ' + money(state.budget - spend)],
+      ['Per guest', money(state.budget / Math.max(1, state.guests))],
+      ['Vendor costs locked', money(vendorStats().committed)]
+    ];
+    rows.forEach(([k, v]) => host.appendChild(el('div', { class: 'kv' }, el('span', { text: k }), el('span', { text: v }))));
+    const bar = $('#budget-bar');
+    if (bar) {
+      bar.style.width = Math.min(100, Math.max(0, cats)) + '%';
+      bar.parentElement.classList.toggle('mint', cats >= 99 && cats <= 101);
+      bar.parentElement.classList.toggle('amber', cats > 101);
+    }
+    const note = $('#alloc-note');
+    if (note) {
+      note.textContent = cats > 100.5 ? 'Over-allocated by ' + (cats - 100).toFixed(1) + '%'
+        : cats < 99.5 ? (100 - cats).toFixed(1) + '% still unassigned'
+          : 'Perfectly balanced at 100%';
+      note.className = 'badge ' + (Math.abs(cats - 100) < 0.6 ? 'ok' : cats > 100 ? 'bad' : 'warn');
+    }
+  }
+
+  function renderTimeline() {
+    const host = $('#tl');
+    host.textContent = '';
+    const tasks = state.tasks.slice().sort((a, b) => b.days - a.days);
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+    let nextMarked = false;
+
+    tasks.forEach((t) => {
+      const dt = taskDate(t.days);
+      const isOverdue = !t.done && dt && dt < now;
+      let cls = 'tl-item';
+      if (t.done) cls += ' done';
+      else if (!nextMarked && !isOverdue) { cls += ' next'; nextMarked = true; }
+      if (isOverdue) cls += ' overdue';
+
+      const when = el('div', { class: 'tl-when' });
+      if (dt) {
+        when.appendChild(el('b', { text: dt.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) }));
+        when.appendChild(el('span', { text: t.days === 0 ? 'event day' : t.days + 'd before' }));
+      } else {
+        when.appendChild(el('b', { text: '—' }));
+      }
+
+      host.appendChild(el('div', { class: cls },
+        when,
+        el('div', { class: 'tl-rail' }, el('span', { class: 'tl-dot' })),
+        el('div', { class: 'tl-body' },
+          el('label', {},
+            el('input', {
+              type: 'checkbox', checked: t.done,
+              onchange: (e) => { t.done = e.target.checked; save(); renderTimeline(); renderOverview(); }
+            }),
+            el('span', {},
+              el('div', { class: 'tl-text', text: t.label }),
+              el('div', { class: 'phase', text: t.phase + (isOverdue ? ' · overdue' : '') })
+            )
+          ),
+          el('button', {
+            class: 'x', type: 'button', title: 'Remove task', 'aria-label': 'Remove task',
+            onclick: () => { state.tasks = state.tasks.filter((x) => x.id !== t.id); save(); renderTimeline(); renderOverview(); }
+          }, '×')
+        )
+      ));
+    });
+
+    const ts = taskStats();
+    $('#tl-progress').textContent = ts.done + ' / ' + ts.total + ' complete';
+    $('#tl-bar').style.width = (ts.total ? (ts.done / ts.total) * 100 : 0) + '%';
+  }
+
+  function statusClass(s) {
+    if (s === 'Booked' || s === 'Paid') return 'status-booked';
+    if (s === 'Quote received') return 'status-quote';
+    return '';
+  }
+
+  function renderVendors() {
+    const body = $('#v-rows');
+    body.textContent = '';
+    state.vendors.forEach((v, i) => {
+      const sel = el('select', {
+        class: statusClass(v.status),
+        'aria-label': 'Status for ' + v.name,
+        onchange: (e) => {
+          v.status = STATUSES.includes(e.target.value) ? e.target.value : 'Not contacted';
+          save(); renderVendors(); renderOverview();
+        }
+      });
+      STATUSES.forEach((s) => sel.appendChild(el('option', { value: s, text: s, selected: v.status === s })));
+
+      body.appendChild(el('div', { class: 'v-row' },
+        el('div', { class: 'nm' }, el('input', {
+          type: 'text', value: v.name, maxlength: '60', 'aria-label': 'Vendor name',
+          oninput: (e) => { v.name = strip(e.target.value, 60); save(); }
+        })),
+        el('div', { class: 'vcat' }, el('input', {
+          type: 'text', value: v.category, maxlength: '40', 'aria-label': 'Vendor category',
+          oninput: (e) => { v.category = strip(e.target.value, 40); save(); }
+        })),
+        sel,
+        el('input', {
+          type: 'number', value: v.cost || 0, min: '0', step: '50', 'aria-label': 'Cost',
+          onchange: (e) => { v.cost = Math.round(clamp(e.target.value, 0, 1e9, 0)); save(); renderVendors(); renderOverview(); }
+        }),
+        el('button', {
+          class: 'x', type: 'button', title: 'Remove', 'aria-label': 'Remove vendor',
+          onclick: () => { state.vendors.splice(i, 1); save(); renderVendors(); renderOverview(); }
+        }, '×')
+      ));
+    });
+
+    const vs = vendorStats();
+    $('#v-progress').textContent = vs.booked + ' / ' + vs.total + ' booked';
+    $('#v-bar').style.width = (vs.total ? (vs.booked / vs.total) * 100 : 0) + '%';
+    $('#v-committed').textContent = money(vs.committed);
+  }
+
+  function renderIdeas() {
+    const host = $('#idea-grid');
+    host.textContent = '';
+    if (!state.ideas.length) {
+      host.appendChild(el('div', { class: 'empty', style: { gridColumn: '1/-1' } },
+        el('span', { class: 'big', text: '✦' }),
+        'No ideas yet. Pick a few vibe tags on the left, then generate a set tuned to your budget and guest count.'));
+      return;
+    }
+    state.ideas.forEach((idea, i) => {
+      host.appendChild(el('div', { class: 'idea', style: { animationDelay: (i * 45) + 'ms' } },
+        el('button', {
+          class: 'x rm', type: 'button', title: 'Remove idea', 'aria-label': 'Remove idea',
+          onclick: () => { state.ideas.splice(i, 1); save(); renderIdeas(); }
+        }, '×'),
+        el('h4', { text: idea.title }),
+        el('p', { text: idea.body }),
+        el('div', { class: 'meta' },
+          el('span', { class: 'chip cost', text: idea.cost }),
+          idea.tags.slice(0, 3).map((t) => el('span', { class: 'chip', text: t }))
+        )
+      ));
+    });
+  }
+
+  function renderAI() {
+    $$('input[name=provider]').forEach((r) => { r.checked = r.value === state.ai.provider; });
+    const model = $('#ai-model');
+    if (model) {
+      model.value = state.ai.model;
+      model.placeholder = state.ai.provider === 'openai' ? 'gpt-4o-mini' : 'claude-sonnet-4-5';
+      model.disabled = state.ai.provider === 'local';
+    }
+    const keyField = $('#ai-key');
+    if (keyField) keyField.value = sessionStorage.getItem(KEY_SLOT) || '';
+    const hint = $('#ai-hint');
+    if (hint) {
+      hint.textContent = state.ai.provider === 'local'
+        ? 'Built-in planner — no key, no network, works offline.'
+        : 'Key lives in sessionStorage only and is cleared when this tab closes.';
+    }
+  }
+
+  function renderAll() {
+    renderTypeOptions();
+    renderVibes();
+    syncFormInputs();
+    renderHeader();
+    renderOverview();
+    renderBudget();
+    renderTimeline();
+    renderVendors();
+    renderIdeas();
+    renderAI();
+  }
+
+  /* ---------------------------------------------------------------- events */
+  function bind() {
+    $('#f-name').addEventListener('input', (e) => { state.name = strip(e.target.value, 80); save(); renderOverview(); });
+    $('#f-location').addEventListener('input', (e) => { state.location = strip(e.target.value, 80); save(); renderOverview(); });
+    $('#f-date').addEventListener('change', (e) => {
+      state.date = validDate(e.target.value) || state.date;
+      save(); renderHeader(); renderOverview(); renderTimeline();
+    });
+    $('#f-guests').addEventListener('change', (e) => {
+      state.guests = Math.round(clamp(e.target.value, 1, 100000, 1));
+      e.target.value = state.guests;
+      save(); renderOverview(); renderBudget(); updateBudgetTotals();
+    });
+    $('#f-budget').addEventListener('change', (e) => {
+      state.budget = Math.round(clamp(e.target.value, 0, 1e9, 0));
+      e.target.value = state.budget;
+      save(); renderOverview(); renderBudget();
+    });
+    $('#f-currency').addEventListener('change', (e) => {
+      state.currency = CURRENCIES.includes(e.target.value) ? e.target.value : 'USD';
+      save(); renderAll();
+    });
+
+    $$('.tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        view = tab.dataset.view;
+        $$('.tab').forEach((t) => t.classList.toggle('on', t === tab));
+        $$('.view').forEach((v) => v.classList.toggle('on', v.id === 'view-' + view));
+      });
+    });
+
+    $('#btn-generate').addEventListener('click', generateIdeas);
+    $('#btn-ai').addEventListener('click', generateWithAI);
+
+    $('#btn-add-cat').addEventListener('click', () => {
+      const input = $('#new-cat');
+      const name = strip(input.value, 40);
+      if (!name) { toast('Name the category first', 'err'); return; }
+      state.categories.push({ name, pct: 5 });
+      input.value = '';
+      save(); renderBudget(); renderOverview();
+    });
+    $('#new-cat').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('#btn-add-cat').click(); });
+
+    $('#btn-balance').addEventListener('click', () => {
+      const total = allocated();
+      if (total <= 0) { toast('Nothing to balance yet', 'err'); return; }
+      state.categories.forEach((c) => { c.pct = (c.pct / total) * 100; });
+      save(); renderBudget(); renderOverview();
+      toast('Categories rebalanced to 100%', 'ok');
+    });
+
+    $('#btn-add-task').addEventListener('click', () => {
+      const input = $('#new-task');
+      const label = strip(input.value, 160);
+      if (!label) { toast('Describe the task first', 'err'); return; }
+      state.tasks.push({ id: uid(), days: Math.round(clamp($('#new-task-days').value, -30, 1200, 30)), label, phase: 'Custom', done: false });
+      input.value = '';
+      save(); renderTimeline(); renderOverview();
+    });
+
+    $('#btn-add-vendor').addEventListener('click', () => {
+      const input = $('#new-vendor');
+      const name = strip(input.value, 60);
+      if (!name) { toast('Name the vendor first', 'err'); return; }
+      state.vendors.push({ id: uid(), name, category: name, status: 'Not contacted', cost: 0, note: '' });
+      input.value = '';
+      save(); renderVendors(); renderOverview();
+    });
+
+    $('#btn-export').addEventListener('click', exportJSON);
+    $('#btn-import').addEventListener('click', () => $('#file-import').click());
+    $('#file-import').addEventListener('change', (e) => {
+      importJSON(e.target.files && e.target.files[0]);
+      e.target.value = '';
+    });
+    $('#btn-print').addEventListener('click', () => window.print());
+
+    $('#btn-reset').addEventListener('click', () => {
+      if (!window.confirm('Reset this plan? Everything in this browser will be cleared.')) return;
+      try { localStorage.removeItem(STORE_KEY); } catch (_) { /* ignore */ }
+      state = defaultState('wedding');
+      renderAll();
+      toast('Plan reset', 'ok');
+    });
+
+    $$('input[name=provider]').forEach((r) => {
+      r.addEventListener('change', () => {
+        if (!r.checked) return;
+        state.ai.provider = ['local', 'anthropic', 'openai'].includes(r.value) ? r.value : 'local';
+        save(); renderAI();
+      });
+    });
+    $('#ai-model').addEventListener('change', (e) => {
+      state.ai.model = strip(e.target.value, 60);
+      save();
+    });
+    $('#ai-key').addEventListener('input', (e) => {
+      const v = strip(e.target.value, 400);
+      try {
+        if (v) sessionStorage.setItem(KEY_SLOT, v);
+        else sessionStorage.removeItem(KEY_SLOT);
+      } catch (_) { /* ignore */ }
+    });
+    $('#btn-clear-key').addEventListener('click', () => {
+      try { sessionStorage.removeItem(KEY_SLOT); } catch (_) { /* ignore */ }
+      $('#ai-key').value = '';
+      toast('Key cleared from this tab', 'ok');
+    });
+  }
+
+  /* ----------------------------------------------------------------- boot */
+  function boot() {
+    const restored = load();
+    bind();
+    renderAll();
+    if (restored) toast('Welcome back — your plan was restored locally', 'ok');
+    // cross-tab sync (another window editing the same plan)
+    window.addEventListener('storage', (e) => {
+      if (e.key !== STORE_KEY || !e.newValue) return;
+      try { state = sanitize(JSON.parse(e.newValue)); renderAll(); } catch (_) { /* ignore */ }
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+
+</script>
+</body>
+</html>
